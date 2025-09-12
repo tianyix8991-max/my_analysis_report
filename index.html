@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<style>
+/* 标题：宋体/衬线 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Songti SC", "SimSun", "Source Han Serif SC", serif;
+  font-weight: bold;
+  color: #0f172a; /* 深色，稳重 */
+}
+
+/* 正文：无衬线，现代感 */
+body, p, li, td, th {
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  font-weight: normal;
+  color: #1e293b; /* 稍微浅一点的黑灰 */
+}
+
+/* 表格字体稍微小一点 */
+table {
+  font-size: 14px;
+}
+
+  /* 数据说明样式优化 */
+  h2 {
+    border-left: 4px solid #2563eb;
+    padding-left: 8px;
+    margin-top: 32px;
+    color: #2563eb;
+  }
+  #data h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #0f172a;
+  }
+  #data h4 {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #334155;
+  }
+  #data ul {
+    margin: 6px 0 12px 20px;
+  }
+  #data li {
+    margin-bottom: 4px;
+  }
+  #data p {
+    margin: 6px 0;
+  }
+  #data code {
+    background: #f1f5f9;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+  #data .data-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  #data .data-table th {
+    background: #2563eb;
+    color: #fff;
+    padding: 8px;
+    text-align: left;
+  }
+  #data .data-table td {
+    border: 1px solid #e5e7eb;
+    padding: 6px 8px;
+  }
+  #data .data-table tr:nth-child(even) {
+    background: #f9fafb;
+  }
+#metrics h3 { margin-top: 0; }
+#metrics h4 {
+  margin: 14px 0 6px;
+  font-size: 16px;
+  color: #334155;
+}
+#metrics p { margin: 8px 0; }
+#metrics ul.tight { margin: 6px 0 10px 18px; }
+#metrics ul.tight li { margin: 4px 0; }
+/* 与之前保持一致的细节微调 */
+#user-analysis h3 { margin-top: 0; }
+#user-analysis h4 { margin: 16px 0 8px; }
+#user-analysis figure { margin: 10px 0 18px; }
+/* 统一所有图表的说明文字格式 */
+figure {
+  margin: 10px 0 18px;
+  text-align: center; /* 可选：让说明居中 */
+}
+
+figcaption {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #64748b;     /* 统一为灰色 */
+}
+p {
+  margin: 10px 0 14px;
+  line-height: 1.6;
+}
+</style>
+
+  <meta charset="utf-8">
+  <title>我的数据分析作品集 | 谢天翼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root { --c1:#0f172a; --c2:#334155; --acc:#2563eb; --card:#ffffff; --bg:#f6f7fb; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      margin: 0; background: var(--bg); color: var(--c1);
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 24px; }
+    header.hero { text-align: center; padding: 40px 12px 24px; }
+    .hero h1 { margin: 0 0 8px; font-size: 28px; }
+    .hero p { color: var(--c2); margin: 0 0 16px; }
+    .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .btn {
+      background: var(--acc); color:#fff; text-decoration:none; padding:10px 14px;
+      border-radius:10px; font-weight:600;
+    }
+    .btn.outline { background:#fff; color: var(--acc); border:1px solid var(--acc); }
+    section { margin: 28px 0; }
+    h2 {
+      margin: 0 0 12px; font-size: 20px; border-left: 4px solid var(--acc); padding-left: 8px;
+    }
+    .card {
+      background: var(--card); border:1px solid #e5e7eb; border-radius:12px;
+      padding:16px; margin: 16px 0;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.05);
+    }
+    iframe {
+      width: 100%; height: 640px; border: 1px solid #e5e7eb; border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    img {
+      max-width: 100%; height: auto; display: block; border:1px solid #e5e7eb; border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    ul.meta { padding-left: 18px; color: var(--c2); }
+    footer { text-align:center; color: var(--c2); padding: 24px 0; }
+    .grid { display:grid; gap:16px; grid-template-columns: 1fr; }
+    @media (min-width: 840px) {
+      .grid.two { grid-template-columns: 1fr 1fr; }
+    }
+    small.note { color:#64748b; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Hero -->
+    <header class="hero">
+      <h1>数据分析作品集 | 谢天翼</h1>
+      <p>我用 <b>Python</b> + <b>Power BI</b> 解决电商与内容平台的分析问题，关注留存、漏斗与 GMV 增长。</p>
+      <div class="cta">
+        <a class="btn" href="#python">查看 Python分析报告</a>
+        <a class="btn outline" href="#powerbi">浏览 Power BI 报表</a>
+      </div>
+    </header>
+
+<section id="data">
+  <h2>1. 数据说明</h2>
+
+  <h3>（1）数据来源与背景</h3>
+  <p>数据来自 Kaggle 公开数据集：<i>Ecommerce Events History in Electronics Store https://www.kaggle.com/datasets/mkechinov/ecommerce-events-history-in-electronics-store</i></p>
+  <p>内容为某大型电子产品网店的用户行为记录。</p>
+
+  <h3>（2）数据规模</h3>
+  <ul>
+    <li>记录数：885,129 条</li>
+    <li>时间范围：五个月（2020 年 10 月 – 2021 年 2 月，注：Kaggle 数据集页面介绍有误）</li>
+    <li>字段数量：9 个</li>
+  </ul>
+
+  <h3>（3）样例字段</h3>
+  <table class="data-table">
+    <tr><th>字段名</th><th>描述</th></tr>
+    <tr><td>event_time</td><td>事件发生的时间（UTC）</td></tr>
+    <tr><td>event_type</td><td>事件类型：view（浏览）、cart（加购）、remove_from_cart（移出购物车）、purchase（购买）</td></tr>
+    <tr><td>product_id</td><td>产品 ID</td></tr>
+    <tr><td>category_id</td><td>产品的类别 ID</td></tr>
+    <tr><td>category_code</td><td>产品的类别层级（分类编码），通常在主要品类中出现，配件类可能缺失</td></tr>
+    <tr><td>brand</td><td>产品品牌（小写字符串，可能缺失）</td></tr>
+    <tr><td>price</td><td>产品价格（浮点数，已给出）</td></tr>
+    <tr><td>user_id</td><td>用户的永久 ID</td></tr>
+    <tr><td>user_session</td><td>临时会话 ID，用户重新进入商店时会更新</td></tr>
+  </table>
+  <p><b>说明：</b>本数据集中实际的 <code>event_type</code> 仅包含 “view”、“cart”、“purchase” 三类行为。字段描述摘自 Kaggle 数据集简介。</p>
+<div style="height:10px;"></div>
+
+ <h3>（4）数据清洗与预处理</h3>
+<table class="data-table">
+  <tr>
+    <th>字段名</th>
+    <th>缺失率</th>
+    <th>异常值情况</th>
+    <th>处理方式</th>
+  </tr>
+  <tr>
+    <td>event_time</td>
+    <td>0%</td>
+    <td>无</td>
+    <td>转换为日期时间类型，提取日期/小时/星期</td>
+  </tr>
+  <tr>
+    <td>event_type</td>
+    <td>0%</td>
+    <td>无</td>
+    <td>标准化为 view/cart/purchase</td>
+  </tr>
+  <tr>
+    <td>product_id</td>
+    <td>0%</td>
+    <td>无</td>
+    <td>转换为字符串类型</td>
+  </tr>
+  <tr>
+    <td>category_id</td>
+    <td>0%</td>
+    <td>无</td>
+    <td>转换为字符串类型</td>
+  </tr>
+  <tr>
+    <td>category_code</td>
+    <td>部分缺失（约27%）</td>
+    <td>无</td>
+    <td>缺失值替换为 "unknown"，单独分组</td>
+  </tr>
+  <tr>
+    <td>brand</td>
+    <td>部分缺失（约24%）</td>
+    <td>无</td>
+    <td>缺失值替换为 "unknown"，单独分组</td>
+  </tr>
+  <tr>
+    <td>price</td>
+    <td>0%</td>
+    <td>高价商品合理存在（为大品牌显示器或电视）；未发现负值或零值</td>
+    <td>保留全部记录</td>
+  </tr>
+  <tr>
+    <td>user_id</td>
+    <td>0%</td>
+    <td>无</td>
+    <td>转换为字符串类型</td>
+  </tr>
+  <tr>
+    <td>user_session</td>
+    <td>部分缺失（约0.02%）</td>
+    <td>无</td>
+    <td>缺失值替换为 "unknown"，单独分组</td>
+  </tr>
+</table>
+<div style="height:15px;"></div>
+
+</section>
+
+
+    <!-- Python -->
+    <section id="python">
+      <h2>2. Python 分析</h2>
+ <div class="card" id="metrics">
+  <h3>指标体系</h3>
+  <p>在本次分析中，整体逻辑遵循 <b>“商品 → 品类 → 品牌 → 用户”</b> 的顺序展开。首先关注商品、品类与品牌的整体表现，回答“卖得怎样、卖的是什么”；随后转向用户层面，结合活跃度、留存率、价值分层和路径分析，解释“谁在购买、他们如何购买”。</p>
+
+
+  <h4>（1）商品与品类及品牌分析</h4>
+  <ul class="tight">
+    <li><b>热门商品：</b>识别销量最高的商品，观察其价格分布与销售特征。</li>
+    <li><b>热门品类：</b>统计各品类的浏览量与销量，比较不同品类的受欢迎程度。</li>
+    <li><b>转化效率：</b>衡量用户在商品层面的转化路径，重点关注浏览量与整体“浏览→购买”的转化率。</li>
+    <li><b>品牌表现：</b>找出销量和 GMV 排名前列的品牌，并识别高 GMV 品牌的拳头产品与其所属品类。</li>
+  </ul>
+
+  <h4>（2）用户分析</h4>
+  <ul class="tight">
+    <li><b>用户活跃度：</b>计算 DAU、WAU、MAU，并分析用户在 24 小时内的活跃分布特征。</li>
+    <li><b>留存率（Cohort 分析）：</b>按用户首次出现的月份进行分组，计算次月及后续月份的留存率。</li>
+    <li><b>RFM 模型：</b>根据最近一次购买（Recency）、购买频率（Frequency）、消费金额（Monetary）对用户进行价值分层。</li>
+    <li><b>用户路径分析：</b>跟踪用户的行为路径，识别在浏览、加购、购买环节的转化与流失情况。</li>
+  </ul>
+
+  <h4>总结</h4>
+  <p>通过以上指标体系，本次分析能够从商品、品类与品牌的整体表现，到用户的行为模式和价值分层，系统性地揭示电商平台的运行状况。前半部分聚焦于“卖得怎样、卖的是什么”，后半部分则回答“谁在购买、他们如何购买”。接下来将从 <b>商品分析</b> 入手，逐步展开对关键指标的探讨。</p>
+</div>
+
+<div style="height:10px;"></div>
+
+<div class="card" id="goods-cats-brands">
+  <h3>商品、品类与品牌分析</h3>
+  <p>本节先从单品入手，考察最受欢迎的商品及其价格销量关系；随后转向品类层面；最后聚焦品牌，对比主流硬件品牌与差异化消费电子品牌在 GMV 贡献上的不同模式。</p>
+
+<div style="height:10px;"></div>
+
+
+  <!--（1）热门商品分析 -->
+  <h4>1. 热门商品分析</h4>
+  <p><b>方法：</b>统计商品浏览量与购买量，取 Top10，并对两者进行最大值标准化比较。</p>
+  <p><b>结果亮点：</b>产品 1821813 同时拥有最高浏览量和购买量，是名副其实的“明星单品”；产品 4099645 浏览量一般，但购买量很高，显示出价格和性价比优势；产品 3829355 浏览量不高，但销量依然可观；产品 809948 虽上榜，但在标准化后表现中等。</p>
+    <figure>
+    <img src="./analysis_seaborn.png" alt="浏览量Top10 商品" />
+    <figcaption>图 1：浏览量Top10 商品。</figcaption>
+  </figure>
+<div style="height:10px;"></div>
+
+<figure>
+    <img src="./analysis_seaborn1.png" alt="销量Top10 商品" />
+    <figcaption>图 2：销量Top10 商品 。</figcaption>
+  </figure>
+<div style="height:10px;"></div>
+
+<figure>
+    <img src="./analysis_seaborn2.png" alt="浏览量和销量Top10 商品对比" />
+    <figcaption>图 3：浏览量和销量Top10 商品对比（其中浏览量和销量已按各自最大值进行标准化处理） 。</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+
+  <!-- （2） 商品价格与销量关系 -->
+  <h4>（2） 商品价格与销量关系</h4>
+  <p><b>方法：</b>计算各商品销量与均价，绘制价格-销量气泡图（气泡大小表示 GMV）。</p>
+  <p><b>结果亮点：</b>产品 1821813 兼具高价与高销量，是典型的“明星单品”。产品 4099645 拥有最高销量，得益于较低价格和突出的性价比。产品 3829355 价格更低，但销量与前两者相当。</p>
+  <p><b>启示：</b>兼顾“溢价产品”与“走量产品”。</p>
+  <figure>
+    <img src="./analysis_seaborn3.png" alt="价格-销量气泡图（气泡大小为 GMV）" />
+    <figcaption>图 4：价格-销量气泡图（气泡大小为 GMV）。</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+
+  <!-- （3） 品类与均价分析 -->
+  <h4>（3） 品类与均价分析</h4>
+  <p><b>方法：</b>按 category_code 聚合，计算各品类的销量、均价和 GMV，选取销量 Top10 品类进行比较。</p>
+  <p><b>结果亮点：</b>显卡（videocards） 均价最高，却依然是最受欢迎的品类，说明消费者愿意为性能和品质付费。CPU 同样均价较高，但销量表现一般。电话与墨水盒 价格低廉（不足 50 元），但销量很可观。</p>
+  <p><b>启示：</b>需求“两极化”：高价值硬件 vs. 低价快消。</p>
+  <figure>
+    <img src="./analysis_seaborn4.png" alt="品类销量 Top10 与均价对比" />
+    <figcaption>图 5：品类销量 Top10 与均价对比。</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+
+
+  <!-- （4） 商品转化率分析 -->
+  <h4>（4） 商品转化率分析</h4>
+  <p><b>方法：</b>基于 <code>view → cart → purchase</code> 路径计算转化率，给出商品转化率 Top10。</p>
+  <p><b>结果亮点：</b>墨水盒（cartridges） 转化率最高，典型为低值易耗品。HP 墨水盒（product_id =  623426）并非最低价，却凭借品牌效应获得更高销量。
+	而对比浏览量和转化率：
+	高浏览量商品：购买量大，但转化率偏低，属于“流量驱动型爆款”。
+	低浏览量商品：转化率高，但成交量有限，属于“高效小众产品”。
+</p>
+  <p><b>启示：</b>优化爆款转化、提升高效小众品曝光。</p>
+  <figure>
+    <img src="./analysis_seaborn5.png" alt="商品转化率 Top10" />
+    <figcaption>图 6：商品转化率 Top10。</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+<figure>
+    <img src="./analysis_seaborn6.png" alt="商品转化率与浏览量对比图" />
+    <figcaption>图 7：商品转化率与浏览量对比图。</figcaption>
+  </figure>
+
+
+<div style="height:10px;"></div>
+
+
+  <!-- （5） 品牌热度与销量贡献（交互图） -->
+  <h4>（5） 品牌热度与销量贡献</h4>
+  <p><b>方法：</b>按购买量统计 Top10 品牌。</p>
+  <p><b>结果亮点：</b>MSI 和 Gigabyte 是最受欢迎的品牌，在购买数量和 GMV 贡献上均遥遥领先。店铺在很大程度上依赖于这两大品牌的爆款产品。</p>
+  <p><b>启示：</b>平台需要重点维护与 MSI 和 Gigabyte 的合作关系，同时也应考虑拓展其他潜力品牌，降低对少数品牌的过度依赖。</p>
+  <figure>
+    <iframe src="./analysis_plotly07.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图 8：品牌热度与 GMV 份额。（交互图）</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+<!-- （6） 高 GMV 品牌与拳头产品（交互图） -->
+  <h4>（6） 高 GMV 品牌与拳头产品</h4>
+ <p><b>方法：</b>按 GMV 统计 Top10 品牌，追踪核心产品及品类。</p>
+  <p><b>结果亮点：</b>Gigabyte、ASUS、MSI、Palit、PowerColor、Sapphire 的核心收入主要来自显卡产品，显卡是其典型的拳头品类。AMD 的 GMV 最高产品则来自 CPU，而非显卡。其他品牌展现差异化优势：Canon 的打印机、Epson 的扫描仪、Pioneer 的播放器均对 GMV 贡献显著。</p>
+  <p><b>启示：</b>主流 PC 硬件品牌高度依赖单一品类的明星产品，而部分消费电子品牌则通过特色品类建立市场地位。平台在策略上既要继续深耕显卡、CPU 等高价值硬件，也应通过多品类布局（如打印机、扫描仪、播放器）来分散风险，拓展更多消费场景。</p>
+  <figure>
+    <iframe src="./analysis_plotly08.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图 9：高 GMV 品牌。</figcaption>
+  </figure>
+<div style="height:10px;"></div>
+
+<figure>
+    <iframe src="./analysis_plotly09.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图 10：高 GMV 品牌对应拳头产品及其品类。（交互图）</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+
+ <p>为进一步直观呈现品牌与品类的对应关系，我们使用 Treemap 可视化更加全面地展示了每个品牌的核心 GMV 品类。结果与前述分析一致：主流硬件品牌依赖单一核心品类，而消费电子品牌则通过特色品类建立市场地位。  <p>
+  <figure>
+    <iframe src="./analysis_plotly10.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图11：品牌与品类对应关系图。（交互图）</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+
+
+  <!-- 小结 -->
+  <h4>小结：</h4>
+  <p><b>商品、品类与品牌的分析显示，市场格局由 高价爆款、低价快消品与核心硬件品牌共同塑造：</b></p>
+<ul class="tight">
+<li>明星单品（如显卡、旗舰型号）带动整体销量和 GMV；
+ <li>低价高效品（如墨水盒、电话）贡献稳定成交；
+<li>品牌层面，PC 硬件品牌依赖单一品类，而消费电子品牌通过特色产品占位市场。
+ </ul> 
+
+ <p><b>战略启示：平台应采取差异化运营策略：</b> <p>
+<ul class="tight">
+<li>优化爆款的转化效率；
+<li>提升小众高效品的曝光度；
+<li>维护核心硬件品牌合作关系；
+<li>通过多品类布局分散风险，拓展更多消费场景。
+ </ul> 
+    </div>
+
+<div style="height:15px;"></div>
+
+<div class="card" id="user-analysis">
+  <h3>用户分析</h3>
+
+  <!-- （1） 用户活跃度分析（交互图） -->
+  <h4>（1） 用户活跃度分析</h4>
+
+  <p><b>方法：</b>统计用户在 24 小时内的活跃度分布，分别展示去重（活跃用户数）和不去重（事件次数）。进一步计算 DAU、WAU、MAU，观察整体活跃趋势。</p>
+
+  <p><b>结果：</b>日内活跃度：大部分用户在 白天（8:00–18:00） 活跃，11 点和 17 点出现两个高峰；深夜活跃度最低；DAU/WAU/MAU 趋势：三者走势一致。2020 年 9 月处于最低水平，11 月达到峰值，随后在 12 月至次年 1 月初下降，并在 1 月中旬回升；黑五效应：11 月用户数激增可能与黑色星期五促销有关，但高峰出现在 11 月 18 日，早于黑五当日，因此不能完全解释增长现象。缺乏跨年对比数据，也难以确认是否存在季节性规律。</p>
+
+  <p><b>启示：</b>平台可在白天高峰期集中投放广告、推送和活动；深夜可作为运维优化窗口。另外，用户活跃峰值与黑五并非完全重合，说明促销活动并非唯一驱动，应结合日常运营与市场节奏。</p>
+<div style="height:10px;"></div>
+
+  <figure>
+    <iframe src="./analysis_plotly.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图12：用户活跃度分布（24小时内）（交互图）。</figcaption>
+    <!-- 可选兜底静态图 -->
+    <!-- <img src="./analysis_plotly.png" alt="用户活跃度与DAU/WAU/MAU静态预览"> -->
+  </figure>
+<div style="height:10px;"></div>
+
+ <figure>
+    <iframe src="./analysis_plotly02.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图13：用户活跃度分布 / DAU 趋势（交互图）。</figcaption>
+    <!-- 可选兜底静态图 -->
+    <!-- <img src="./analysis_plotly.png" alt="用户活跃度与DAU/WAU/MAU静态预览"> -->
+  </figure>
+<div style="height:10px;"></div>
+
+ <figure>
+    <iframe src="./analysis_plotly03.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图14：用户活跃度分布 / WAU 趋势（交互图）。</figcaption>
+    <!-- 可选兜底静态图 -->
+    <!-- <img src="./analysis_plotly.png" alt="用户活跃度与DAU/WAU/MAU静态预览"> -->
+  </figure>
+<div style="height:10px;"></div>
+
+ <figure>
+    <iframe src="./analysis_plotly04.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图15：用户活跃度分布 / MAU 趋势（交互图）。</figcaption>
+    <!-- 可选兜底静态图 -->
+    <!-- <img src="./analysis_plotly.png" alt="用户活跃度与DAU/WAU/MAU静态预览"> -->
+  </figure>
+
+
+<div style="height:10px;"></div>
+
+  <!-- （2） 留存率分析（交互图） -->
+  <h4>（2） 留存率分析（Cohort 分析）</h4>
+
+  <p><b>方法：</b>以月为单位，仅保留“有过购买”的用户，按照首次购买月份进行分组。计算用户在 cohort 月及之后各月是否仍有行为，绘制留存率热力图。
+
+  <p><b>结果：</b>整体留存率偏低，首月留存仅 5%–12%，到第三个月即降至约 2%，几乎可以忽略；考虑到显卡、CPU、打印机等为耐用品，低留存率符合预期。</p>
+
+  <p><b>启示：</b>主营耐用品的平台不应以长期留存作为核心指标；可通过周边产品（墨水盒、配件等）提升复购场景，延长用户生命周期价值。</p>
+
+     <figure>
+    <img src="./analysis_seaborn7.png" alt="月度 Cohort 留存热力图" />
+    <figcaption>图 16：月度 Cohort 留存热力图。</figcaption>
+  </figure>
+
+<div style="height:10px;"></div>
+
+  <!-- （3） RFM 模型分析（交互图） -->
+  <h4>（3） RFM 模型分析</h4>
+
+  <p><b>方法：</b>对最近一次购买（Recency）、购买频率（Frequency）、消费金额（Monetary）三个维度进行分位数打分，每维度 1–5 分；通过规则划分客户群体：高价值客户、忠诚客户、潜力客户、流失客户、一般客户。</p>
+
+  <p><b>结果：</b>高价值客户与潜力客户仅占约 30%，却贡献了大部分营收，其余 70% 用户（一般、忠诚、流失）消费金额有限。收入结构体现典型的 二八效应，即少数高消费用户支撑整体业绩。
+
+  <p><b>启示：</b>平台业务高度依赖核心客户，一旦流失将显著冲击收入。应实施客户分层管理：对于高价值客户，可通过会员体系、专属优惠和售后服务增强黏性。对于潜力客户：提供升级激励方案，提高复购率与客单价。对于低价值客户：可通过耗材、配件等高频商品激活消费，但不宜投入过多运营资源。</p>
+
+  <figure>
+    <iframe src="./analysis_plotly05.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图17：RFM 分层分布与贡献。（交互图）</figcaption>
+    <!-- <img src="./plot_rfm_segments.png" alt="RFM分层静态预览"> -->
+  </figure>
+<div style="height:10px;"></div>
+
+  <!-- （4） 用户路径分析（交互图） -->
+  <h4>（4） 用户路径分析</h4>
+
+  <p><b>方法：</b>构建用户行为路径 Sankey 图，路径顺序为 view → cart → remove_from_cart → purchase。设置 MAX_STEPS = 4，相邻重复事件合并，避免“view → view → …”冗余。</p>
+
+  <p><b>结果：</b>最典型路径为 “view → cart → purchase”。许多用户在加入购物车后未完成购买，说明购物车是流失高发环节；极少数用户存在“即刻转化”（view 后直接 purchase）的情况；个别用户出现“purchase → view”的异常路径，提示数据质量可能存在问题。</p>
+
+  <p><b>启示：</b>应重点优化购物车转化，例如：提醒、优惠、限时活动。另外，需要进一步检查异常路径，确保数据清洗和埋点准确性。</p>
+
+  <figure>
+    <iframe src="./analysis_plotly06.html" loading="lazy" referrerpolicy="no-referrer"></iframe>
+    <figcaption>图18：用户行为路径。（Sankey交互图）</figcaption>
+    <!-- <img src="./plot_user_path_sankey.png" alt="Sankey静态预览"> -->
+  </figure>
+<div style="height:10px;"></div>
+
+
+  <!-- 小结 -->
+  <h4>小结：</h4>
+
+  <p><b>用户分析表明：</b></p>
+<ul class="tight">
+  <li>活跃度：用户活跃集中在白天，营销可针对高峰时段。
+  <li>留存：耐用品属性导致月度留存率低，符合预期。
+  <li>价值结构：二八效应明显，少数高价值用户贡献主要收入。
+  <li>路径：购物车环节流失严重，是提升转化的关键点。
+</ul> 
+
+  <p><b>战略启示：</b></p>
+<ul class="tight">
+  <li>在用户运营上，应以 客户分层管理 为核心：维护高价值客户、激励潜力客户、低成本维系普通客户。
+  <li>在产品与营销上，应通过配件、耗材类商品创造更多复购场景，弥补耐用品带来的低留存特征。
+  <li>在转化优化上，应重点改善购物车到购买的环节，减少流失，提升整体成交率。
+</ul> 
+</div>
+
+
+
+<div style="height:10px;"></div>
+
+<div class="card" id="conclusion-insights">
+  <h3>结论与业务启示</h3>
+
+  <p>本次分析从<b> 产品维度</b> 与<b> 用户维度</b> 两方面出发，全面揭示了电商平台的运营特征，并提出相应的优化建议。</p>
+
+  <h4>（1）产品层面</h4>
+  <ul class="tight">
+    <li>核心收入来源：显卡与 CPU 等高价值电子产品贡献了主要 GMV，其中 MSI、Gigabyte、ASUS 等品牌的爆款显卡是关键驱动力。</li>
+    <li>差异化补充：其他品牌依靠特色产品形成补充，如 Canon 的打印机、Epson 的扫描仪、Pioneer 的播放器，为整体销售提供了多样化场景。</li>
+    <li>风险特征：平台对单一品类和爆款产品依赖度较高，未来需要通过丰富 SKU 与拓展多元化品类来分散风险。</li>
+  </ul>
+
+  <h4>（2） 用户层面</h4>
+  <ul class="tight">
+    <li>活跃度与留存：DAU/WAU/MAU 在 2020 年 11 月达到峰值，但整体留存率偏低，首月后仅有 5–12% 用户保持活跃，三个月后降至约 2%。</li>
+    <li>价值分层：RFM 分析表明，高价值与潜力客户仅占 30%，却贡献了大部分 GMV，体现出典型的“二八效应”。</li>
+    <li>路径与转化：多数用户停留在 view 或 cart 阶段，转化率有限，漏斗存在明显流失。</li>
+    <li>活跃时段：用户主要在 8:00–18:00 活跃，11 点和 17 点为高峰，适合广告投放与活动上线；深夜低谷可作为系统维护窗口。</li>
+  </ul>
+
+  <h4>（3） 综合业务启示</h4>
+  <ul class="tight">
+    <li>产品策略：保持与核心硬件品牌的合作，同时拓展外围品类，降低单一爆款依赖。</li>
+    <li>用户运营：重点培育潜力客户，提高转化率与复购率；优化购物路径，减少浏览/加购阶段流失。</li>
+    <li>整体方向：在维持核心品类优势的同时，逐步实现 产品多元化 与 用户精细化运营，以提升平台的整体生命周期价值。</li>
+  </ul>
+</div><div style="height:15px;"></div>
+
+
+
+
+    <!-- Power BI -->
+    <section id="powerbi">
+      <h2>Power BI 可视化</h2>
+      <div class="card">
+        <h3>电商经营看板（PDF 导出）</h3>
+        <p class="desc">聚焦 GMV、品类结构与转化率等核心指标。提供 PDF 版便于通用浏览。</p>
+        <!-- Ecommerce DA (Power BI) -->
+        <p>
+          <a class="btn" href="./Ecommerce DA.pdf" target="_blank">📄 在线查看完整报表（PDF）</a>
+        </p>
+        <div class="grid two">
+          <div>
+            <p class="desc">Overview页面截图</p>
+            <img src="./Ecommerce DA_page-0001.jpg" alt="Power BI 截图 1">
+          </div>
+          <div>
+            <p class="desc">产品分析页面截图示例</p>
+            <img src="./Ecommerce DA_page-0004.jpg" alt="Power BI 截图 2">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 关于我 & 联系 -->
+    <section id="about">
+      <h2>关于我</h2>
+      <div class="card">
+        <p>经济学背景的数据分析师，擅长 SQL / Pandas / 可视化叙事，关注业务增长与用户洞察。</p>
+<p><b>工具栈：</b> Python（Pandas、Plotly、Seaborn）、Power BI、SQL（BigQuery/SQLite）。</p>
+<p class="desc"><small class="note">注：如需完整代码，可邮件联系作者。</small></p>       
+ <p>
+          <a class="btn outline" href="./resume.pdf" target="_blank">下载简历（PDF）</a>
+          <a class="btn outline" href="mailto:yourname@email.com">联系我</a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Tianyi Xie · Data Analysis Portfolio</p>
+    </footer>
+  </div>
+</body>
+</html>
